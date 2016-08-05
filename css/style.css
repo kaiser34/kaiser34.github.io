@@ -500,6 +500,13 @@ a.article-title:hover,
   border-collapse: collapse;
   border-spacing: 0;
 }
+.article-entry code {
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  padding: 0;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  padding: 2px 4px 0px 4px;
+}
 .article-entry th {
   font-weight: 600;
   border-bottom: 3px solid #ddd;
@@ -511,9 +518,8 @@ a.article-title:hover,
 }
 .article-entry blockquote {
   font-family: 'PT Serif', 'STZhongsong', '华文中宋', 'Microsoft Yahei', serif;
-  font-size: 1.4em;
   margin: 1.4em 20px;
-  text-align: center;
+  text-align: left;
 }
 .article-entry blockquote footer {
   font-size: 16px;
