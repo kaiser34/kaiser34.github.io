@@ -5,21 +5,18 @@
   
   <title>排序 - Kaiser34</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="排序">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="排序">
 <meta property="og:url" content="http://yoursite.com/2016/08/04/SORT/index.html">
 <meta property="og:site_name" content="Kaiser34">
-<meta property="og:description" content="排序">
 <meta property="og:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/harmony-sort.jpg">
 <meta property="og:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/%25E6%258E%2592%25E5%25BA%258F.png">
 <meta property="og:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/%25E5%25A4%258D%25E6%259D%2582%25E5%25BA%25A6.jpg">
 <meta property="og:image" content="http://algs4.cs.princeton.edu/22mergesort/images/mergesortTD.png">
 <meta property="og:image" content="http://algs4.cs.princeton.edu/23quicksort/images/quicksort.png">
-<meta property="og:updated_time" content="2016-08-05T08:38:37.034Z">
+<meta property="og:updated_time" content="2016-08-05T11:45:24.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序">
-<meta name="twitter:description" content="排序">
 <meta name="twitter:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/harmony-sort.jpg">
   
   
@@ -88,9 +85,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/harmony-sort.jpg" alt=""></p>
-<p>排序</p>
 <a id="more"></a>
-<h2 id="排序概念"><a href="#排序概念" class="headerlink" title="排序概念"></a>排序概念</h2><blockquote>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=20958806&auto=1&height=66"></iframe>
+
+<h2 id="排序概念"><a href="#排序概念" class="headerlink" title="排序概念"></a>排序概念</h2><hr>
+<blockquote>
 <ul>
 <li>按关键字将数据元素（<strong>记录</strong>）有序排列</li>
 <li>多个关键字可以转化为<strong>单个关键字</strong>排序</li>
@@ -113,7 +112,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><blockquote>
+<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><hr>
+<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><blockquote>
 <p>特点：<strong>两两比较相邻记录关键字</strong></p>
 </blockquote>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt; </div><div class="line"><span class="comment">//整數或浮點數皆可使用,若要使用物件(class)時必須設定大於(&gt;)的運算子功能</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubble_sort</span><span class="params">(T arr[], <span class="keyword">int</span> len)</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> i, j;</div><div class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)</div><div class="line">		<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; len - <span class="number">1</span> - i; j++)</div><div class="line">			<span class="keyword">if</span> (arr[j] &gt; arr[j + <span class="number">1</span>])</div><div class="line">				swap(arr[j], arr[j + <span class="number">1</span>]);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">int</span> arr[] = &#123; <span class="number">61</span>, <span class="number">17</span>, <span class="number">29</span>, <span class="number">22</span>, <span class="number">34</span>, <span class="number">60</span>, <span class="number">72</span>, <span class="number">21</span>, <span class="number">50</span>, <span class="number">1</span>, <span class="number">62</span> &#125;;</div><div class="line">	<span class="keyword">int</span> len = (<span class="keyword">int</span>) <span class="keyword">sizeof</span>(arr) / <span class="keyword">sizeof</span>(*arr);</div><div class="line">	bubble_sort(arr, len);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; arr[i] &lt;&lt; <span class="string">' '</span>;</div><div class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">	<span class="keyword">float</span> arrf[] = &#123; <span class="number">17.5</span>, <span class="number">19.1</span>, <span class="number">0.6</span>, <span class="number">1.9</span>, <span class="number">10.5</span>, <span class="number">12.4</span>, <span class="number">3.8</span>, <span class="number">19.7</span>, <span class="number">1.5</span>, <span class="number">25.4</span>, <span class="number">28.6</span>, <span class="number">4.4</span>, <span class="number">23.8</span>, <span class="number">5.4</span> &#125;;</div><div class="line">	len = (<span class="keyword">int</span>) <span class="keyword">sizeof</span>(arrf) / <span class="keyword">sizeof</span>(*arrf);</div><div class="line">	bubble_sort(arrf, len);</div><div class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</div><div class="line">		<span class="built_in">cout</span> &lt;&lt; arrf[i] &lt;&lt; <span class="string">' '</span>;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
