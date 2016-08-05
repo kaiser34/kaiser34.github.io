@@ -500,13 +500,6 @@ a.article-title:hover,
   border-collapse: collapse;
   border-spacing: 0;
 }
-.article-entry code {
-  border: 1px solid #ddd;
-  background-color: #f8f8f8;
-  padding: 0;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
-  padding: 2px 4px 0px 4px;
-}
 .article-entry th {
   font-weight: 600;
   border-bottom: 3px solid #ddd;
