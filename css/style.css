@@ -510,10 +510,10 @@ a.article-title:hover,
   padding: 10px 0;
 }
 .article-entry blockquote {
-  font-family: 'PT Serif', 'STZhongsong', '华文中宋', 'Microsoft Yahei', serif;
-  font-size: 0.9em;
-  margin: 1.4em 20px;
-  text-align: left;
+  font-family: font-sans;
+  border-left: 5px solid #ddd;
+  margin: 15px 0 0 2px;
+  padding-left: 20px;
 }
 .article-entry blockquote footer {
   font-size: 16px;
