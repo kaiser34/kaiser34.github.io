@@ -676,14 +676,16 @@ a.article-title:hover,
   margin: 0 auto;
 }
 .article-toc {
-  float: right;
-  margin-left: 40px;
-  padding: 10px 20px;
-  background: #f1f1f1;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0 0 3px #bbb;
-  box-shadow: 0 0 3px #bbb;
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 110px;
+  font-size: 0.9em;
+  width: 260px;
+  margin-left: 400px;
+  padding-left: 20px;
+  overflow-y: auto;
+  line-height: 1.4em;
 }
 .article-toc h3 {
   font-weight: bold;
