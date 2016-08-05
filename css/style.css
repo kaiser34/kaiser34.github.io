@@ -494,8 +494,8 @@ a.article-title:hover,
 }
 .article-entry iframe {
   border: none;
-  horizontal-align: middle;
-  display: block;
+  position: relative;
+  right: 50%;
 }
 .article-entry table {
   width: 100%;
