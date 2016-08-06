@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/google.png">
 <meta property="og:image" content="http://algs4.cs.princeton.edu/31elementary/images/binary-search.png">
 <meta property="og:image" content="http://algs4.cs.princeton.edu/31elementary/images/rank.png">
-<meta property="og:updated_time" content="2016-08-06T06:22:46.721Z">
+<meta property="og:updated_time" content="2016-08-06T08:20:01.511Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找">
 <meta name="twitter:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/google.png">
@@ -133,14 +133,53 @@
 <li>线性索引、树形索引、多级索引</li>
 </ul>
 </blockquote>
-<h3 id="稠密索引"><a href="#稠密索引" class="headerlink" title="稠密索引"></a>稠密索引</h3><p>线性索引中每个记录对应一个索引项</p>
+<h3 id="稠密索引"><a href="#稠密索引" class="headerlink" title="稠密索引"></a>稠密索引</h3><p>线性索引中每个记录对应<strong>一个</strong>索引项，并且索引项按照关键码<strong>有序排列</strong></p>
+<h3 id="分块索引"><a href="#分块索引" class="headerlink" title="分块索引"></a>分块索引</h3><p>对数据集进行分块，使其分块有序，然后再对每一块建立索引项（<strong>分块索引表</strong>）</p>
+<blockquote>
+<ul>
+<li><strong>块内无序</strong></li>
+<li><strong>块间有序</strong></li>
+</ul>
+</blockquote>
+<p>索引项结构：</p>
+<ul>
+<li>最大关键码</li>
+<li>块中记录个数</li>
+<li>指向块首元素指针</li>
+</ul>
+<blockquote>
+<p>折半（插值）+顺序</p>
+</blockquote>
+<h3 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h3><p>记录号表存储次关键码<strong>相同的的所有记录号</strong>（可以指向记录的指针或主关键字）</p>
+<p>索引项通用结构：</p>
+<ul>
+<li>次关键码</li>
+<li>次记录号表</li>
+</ul>
+<blockquote>
+<p>压缩</p>
+</blockquote>
+<h2 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">rank():</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">rank</span><span class="params">(Key key)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (key == <span class="keyword">null</span>)</div><div class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException(<span class="string">"argument to rank() is null"</span>);</div><div class="line">	<span class="keyword">return</span> rank(key, root);</div><div class="line">&#125; </div><div class="line"><span class="comment">// Number of keys in the subtree less than key.</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">rank</span><span class="params">(Key key, Node x)</span> </span>&#123;</div><div class="line">	<span class="keyword">if</span> (x == <span class="keyword">null</span>)</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>; </div><div class="line">	<span class="keyword">int</span> cmp = key.compareTo(x.key); </div><div class="line">	<span class="keyword">if</span>(cmp &lt; <span class="number">0</span>)</div><div class="line">		<span class="keyword">return</span> rank(key, x.left); </div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</div><div class="line">     	<span class="keyword">return</span> <span class="number">1</span> + size(x.left) + rank(key, x.right); </div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="keyword">return</span> size(x.left); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">get():</div><div class="line">private Value get(Node x, Key key) &#123;</div><div class="line">	if (x == null) return null;</div><div class="line">	int cmp = key.compareTo(x.key);</div><div class="line">	if      (cmp &lt; 0) return get(x.left, key);</div><div class="line">	else if (cmp &gt; 0) return get(x.right, key);</div><div class="line">	else              return x.val;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">put():</div><div class="line">private Node put(Node x, Key key, Value val) &#123;</div><div class="line">	if (x == null) return new Node(key, val, 1);</div><div class="line">	int cmp = key.compareTo(x.key);</div><div class="line">	if      (cmp &lt; 0) x.left  = put(x.left,  key, val);</div><div class="line">	else if (cmp &gt; 0) x.right = put(x.right, key, val);</div><div class="line">	else              x.val   = val;</div><div class="line">	x.size = 1 + size(x.left) + size(x.right);</div><div class="line">	return x;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p><code>delete()</code>：<strong>中序遍历</strong>待删结点，找到前驱结点与后继节点</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">delete():</div><div class="line">private Node delete(Node x, Key key) &#123;</div><div class="line">	if (x == null) return null;</div><div class="line">	int cmp = key.compareTo(x.key);</div><div class="line">	if      (cmp &lt; 0) x.left  = delete(x.left,  key);</div><div class="line">	else if (cmp &gt; 0) x.right = delete(x.right, key);</div><div class="line">	else &#123; </div><div class="line">		if (x.right == null) return x.left;</div><div class="line">		if (x.left  == null) return x.right;</div><div class="line">		Node t = x;</div><div class="line">		x = min(t.right);</div><div class="line">		x.right = deleteMin(t.right);</div><div class="line">		x.left = t.left;</div><div class="line">	&#125; </div><div class="line">	x.size = size(x.left) + size(x.right) + 1;</div><div class="line">	return x;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>二叉排序树的查找性能取决于二<strong>叉排序树的形状</strong></p>
+</blockquote>
+<h2 id="平衡二叉树（AVL树）"><a href="#平衡二叉树（AVL树）" class="headerlink" title="平衡二叉树（AVL树）"></a>平衡二叉树（AVL树）</h2><blockquote>
+<p>每个结点的左子树与右子树的高度差（<strong>平衡因子</strong>）至多等于1</p>
+</blockquote>
+<p>最小不平衡子树</p>
 
       
     </div>
     
       <div class="article-toc">
         <h3>目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找概论"><span class="toc-number">1.</span> <span class="toc-text">查找概论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序表查找"><span class="toc-number">2.</span> <span class="toc-text">顺序表查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有序表查找"><span class="toc-number">3.</span> <span class="toc-text">有序表查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找"><span class="toc-number">3.1.</span> <span class="toc-text">二分查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插值查找"><span class="toc-number">3.2.</span> <span class="toc-text">插值查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#斐波那契查找"><span class="toc-number">3.3.</span> <span class="toc-text">斐波那契查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性索引查找"><span class="toc-number">4.</span> <span class="toc-text">线性索引查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#稠密索引"><span class="toc-number">4.1.</span> <span class="toc-text">稠密索引</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找概论"><span class="toc-number">1.</span> <span class="toc-text">查找概论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序表查找"><span class="toc-number">2.</span> <span class="toc-text">顺序表查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有序表查找"><span class="toc-number">3.</span> <span class="toc-text">有序表查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找"><span class="toc-number">3.1.</span> <span class="toc-text">二分查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插值查找"><span class="toc-number">3.2.</span> <span class="toc-text">插值查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#斐波那契查找"><span class="toc-number">3.3.</span> <span class="toc-text">斐波那契查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性索引查找"><span class="toc-number">4.</span> <span class="toc-text">线性索引查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#稠密索引"><span class="toc-number">4.1.</span> <span class="toc-text">稠密索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分块索引"><span class="toc-number">4.2.</span> <span class="toc-text">分块索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#倒排索引"><span class="toc-number">4.3.</span> <span class="toc-text">倒排索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉排序树"><span class="toc-number">5.</span> <span class="toc-text">二叉排序树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平衡二叉树（AVL树）"><span class="toc-number">6.</span> <span class="toc-text">平衡二叉树（AVL树）</span></a></li></ol>
       </div>
     
     
