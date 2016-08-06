@@ -685,7 +685,10 @@ a.article-title:hover,
   margin-left: 400px;
   padding-left: 20px;
   overflow-y: auto;
-  line-height: 1.4em;
+  line-height: 1.5em;
+  border-left-width: thin;
+  border-style: solid;
+  border-color: #ff9f99;
 }
 .article-toc h3 {
   font-weight: bold;
