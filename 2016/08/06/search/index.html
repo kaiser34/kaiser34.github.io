@@ -13,7 +13,9 @@
 <meta property="og:image" content="http://algs4.cs.princeton.edu/31elementary/images/binary-search.png">
 <meta property="og:image" content="http://algs4.cs.princeton.edu/31elementary/images/rank.png">
 <meta property="og:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/deleteBST.PNG">
-<meta property="og:updated_time" content="2016-08-06T08:45:32.872Z">
+<meta property="og:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/RBT.png">
+<meta property="og:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/rotateBST.PNG">
+<meta property="og:updated_time" content="2016-08-06T11:44:54.241Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="查找">
 <meta name="twitter:image" content="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/google.png">
@@ -181,14 +183,75 @@
 <p>每个结点的左子树与右子树的高度差（<strong>平衡因子</strong>）至多等于1</p>
 </blockquote>
 <p>最小不平衡子树</p>
-<p><strong>旋转：BF大于1左旋，小于-1右旋，异号再一次反向旋转</strong></p>
-
+<p><strong>旋转：BF大于1左旋，小于-1右旋，异号子结点先进行反向旋转</strong></p>
+<h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><hr>
+<p><img src="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/RBT.png" alt=""></p>
+<blockquote>
+<ol>
+<li>节点非红即黑</li>
+<li>根节点是黑色</li>
+<li>所有NULL结点称为叶子节点，且认为颜色为黑</li>
+<li>所有红节点的子节点都为黑色</li>
+<li>从任一节点到其叶子节点的所有路径上都包含相同数目的黑节点（不能插入黑结点）</li>
+</ol>
+</blockquote>
+<p><img src="https://coding.net/u/kaiser34Code/p/PicWords/git/raw/master/rotateBST.PNG" alt=""></p>
+<h2 id="多路查找树"><a href="#多路查找树" class="headerlink" title="多路查找树"></a>多路查找树</h2><hr>
+<p>每个结点孩子数可以多于两个，且每一个结点可以存储多个元素</p>
+<p>B树是一种平衡的多路查找树，结点最大的孩子数目成为B的阶</p>
+<ul>
+<li><p>2-3树</p>
+</li>
+<li><p>2-3-4树</p>
+</li>
+</ul>
+<blockquote>
+<p>B树减少了必须访问结点和数据块的数量，适合内外存数据的交换</p>
+<blockquote>
+<p>在含有n个关键字的B树上查找，路径涉及的结点数 $log_{[\frac{m}{2} ]}(\frac{n+1}{2})+1$</p>
+</blockquote>
+</blockquote>
+<p>B+树中分支节点的元素会被当作它们在该分支结点位置的中序后继者中再次出现，所有叶子节点都依次链接在一起</p>
+<blockquote>
+<p>分支结点：索引（结点中仅含其子树中最大关键字）</p>
+<p>叶子结点：包含全部关键字的信息</p>
+</blockquote>
+<h2 id="散列表查找概述"><a href="#散列表查找概述" class="headerlink" title="散列表查找概述"></a>散列表查找概述</h2><hr>
+<ul>
+<li>散列技术：在记录的存储位置和它的关键字之间建立一个确定的对应关系，每个关键字对应一个存储位置，将记录存储在一块连续的存储空间（散列表）中</li>
+<li>散列技术适合查找与给定值相等的记录（不适合范围查找）</li>
+<li>冲突</li>
+</ul>
+<blockquote>
+<p>散列表的平均查找长度取决于<strong>装填因子</strong>，而不是取决于查找集合中的记录个数</p>
+</blockquote>
+<h3 id="散列函数构造方法"><a href="#散列函数构造方法" class="headerlink" title="散列函数构造方法"></a>散列函数构造方法</h3><ul>
+<li>计算简单（不应超过其他查找技术比较时间）</li>
+<li>散列地址分布均匀</li>
+</ul>
+<h5 id="直接定址法"><a href="#直接定址法" class="headerlink" title="直接定址法"></a>直接定址法</h5><p>取关键字的某个线性函数值作为散列地址</p>
+<h5 id="数字分析法"><a href="#数字分析法" class="headerlink" title="数字分析法"></a>数字分析法</h5><blockquote>
+<p>适合关键字位数较大（已知其分布且若干位分布均匀）</p>
+</blockquote>
+<ul>
+<li>抽取</li>
+<li>处理</li>
+</ul>
+<h5 id="平方取中法"><a href="#平方取中法" class="headerlink" title="平方取中法"></a>平方取中法</h5><h5 id="折叠法"><a href="#折叠法" class="headerlink" title="折叠法"></a>折叠法</h5><h5 id="随机数法"><a href="#随机数法" class="headerlink" title="随机数法"></a>随机数法</h5><h3 id="处理散列表冲突的方法"><a href="#处理散列表冲突的方法" class="headerlink" title="处理散列表冲突的方法"></a>处理散列表冲突的方法</h3><h5 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h5><p>一旦发生了冲突，就去寻找下一个空的散列地址，只要散列表足够大，空的散列地址总能找的，并存入记录</p>
+<ul>
+<li>线性探测法</li>
+<li>二次探测法</li>
+<li>随机探测法</li>
+</ul>
+<h5 id="再散列函数法"><a href="#再散列函数法" class="headerlink" title="再散列函数法"></a>再散列函数法</h5><p>存储于多个散列函数中</p>
+<h5 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a>链地址法</h5><p>将所有关键字为同义词的记录存储于一个单链表中（同义词子表）</p>
+<h5 id="公共溢出区法"><a href="#公共溢出区法" class="headerlink" title="公共溢出区法"></a>公共溢出区法</h5>
       
     </div>
     
       <div class="article-toc">
         <h3>目录</h3>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找概论"><span class="toc-number">1.</span> <span class="toc-text">查找概论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序表查找"><span class="toc-number">2.</span> <span class="toc-text">顺序表查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有序表查找"><span class="toc-number">3.</span> <span class="toc-text">有序表查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找"><span class="toc-number">3.1.</span> <span class="toc-text">二分查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插值查找"><span class="toc-number">3.2.</span> <span class="toc-text">插值查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#斐波那契查找"><span class="toc-number">3.3.</span> <span class="toc-text">斐波那契查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性索引查找"><span class="toc-number">4.</span> <span class="toc-text">线性索引查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#稠密索引"><span class="toc-number">4.1.</span> <span class="toc-text">稠密索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分块索引"><span class="toc-number">4.2.</span> <span class="toc-text">分块索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#倒排索引"><span class="toc-number">4.3.</span> <span class="toc-text">倒排索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉排序树"><span class="toc-number">5.</span> <span class="toc-text">二叉排序树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平衡二叉树（AVL树）"><span class="toc-number">6.</span> <span class="toc-text">平衡二叉树（AVL树）</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找概论"><span class="toc-number">1.</span> <span class="toc-text">查找概论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#顺序表查找"><span class="toc-number">2.</span> <span class="toc-text">顺序表查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有序表查找"><span class="toc-number">3.</span> <span class="toc-text">有序表查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分查找"><span class="toc-number">3.1.</span> <span class="toc-text">二分查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插值查找"><span class="toc-number">3.2.</span> <span class="toc-text">插值查找</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#斐波那契查找"><span class="toc-number">3.3.</span> <span class="toc-text">斐波那契查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线性索引查找"><span class="toc-number">4.</span> <span class="toc-text">线性索引查找</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#稠密索引"><span class="toc-number">4.1.</span> <span class="toc-text">稠密索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分块索引"><span class="toc-number">4.2.</span> <span class="toc-text">分块索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#倒排索引"><span class="toc-number">4.3.</span> <span class="toc-text">倒排索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉排序树"><span class="toc-number">5.</span> <span class="toc-text">二叉排序树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平衡二叉树（AVL树）"><span class="toc-number">6.</span> <span class="toc-text">平衡二叉树（AVL树）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#红黑树"><span class="toc-number">7.</span> <span class="toc-text">红黑树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多路查找树"><span class="toc-number">8.</span> <span class="toc-text">多路查找树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#散列表查找概述"><span class="toc-number">9.</span> <span class="toc-text">散列表查找概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#散列函数构造方法"><span class="toc-number">9.1.</span> <span class="toc-text">散列函数构造方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#直接定址法"><span class="toc-number">9.1.0.1.</span> <span class="toc-text">直接定址法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#数字分析法"><span class="toc-number">9.1.0.2.</span> <span class="toc-text">数字分析法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#平方取中法"><span class="toc-number">9.1.0.3.</span> <span class="toc-text">平方取中法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#折叠法"><span class="toc-number">9.1.0.4.</span> <span class="toc-text">折叠法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#随机数法"><span class="toc-number">9.1.0.5.</span> <span class="toc-text">随机数法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#处理散列表冲突的方法"><span class="toc-number">9.2.</span> <span class="toc-text">处理散列表冲突的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#开放定址法"><span class="toc-number">9.2.0.1.</span> <span class="toc-text">开放定址法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#再散列函数法"><span class="toc-number">9.2.0.2.</span> <span class="toc-text">再散列函数法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#链地址法"><span class="toc-number">9.2.0.3.</span> <span class="toc-text">链地址法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#公共溢出区法"><span class="toc-number">9.2.0.4.</span> <span class="toc-text">公共溢出区法</span></a></li></ol></li></ol></li></ol></li></ol>
       </div>
     
     
