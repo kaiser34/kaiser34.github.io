@@ -679,11 +679,10 @@ a.article-title:hover,
   display: none;
   position: fixed;
   left: 50%;
-  top: 110px;
+  top: 197px;
   font-size: 0.9em;
   width: 260px;
-  margin-left: 400px;
-  padding-left: 20px;
+  margin-left: 420px;
   overflow-y: auto;
   line-height: 1.5em;
   border-left-width: thin;
